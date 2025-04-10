@@ -5,7 +5,7 @@ from controllers.userController import get_all_users, create_user, update_user, 
 user_bp = Blueprint('users', __name__)
 
 # Ruta para obtener todos los usuarios
-@user_bp.route('/', methods=['GET'])
+@user_bp.route('/usuarios', methods=['GET'])
 def index():
     users = get_all_users()
     if isinstance(users, tuple):
@@ -13,7 +13,7 @@ def index():
     return jsonify(users)
 
 # Ruta para crear un nuevo usuario
-@user_bp.route('/', methods=['POST'])
+@user_bp.route('/crearusuario', methods=['POST'])
 def user_store():
     data = request.get_json()
     name = data.get('name')
@@ -28,7 +28,7 @@ def user_store():
     return jsonify(new_user), 201
 
 # Ruta para obtener un usuario por ID
-@user_bp.route('/<int:user_id>', methods=['GET'])
+@user_bp.route('/usuario/<int:user_id>', methods=['GET'])
 def user_show(user_id):
     user = get_user_by_id(user_id)
     if user is None:
@@ -36,7 +36,7 @@ def user_show(user_id):
     return jsonify(user)
 
 # Ruta para actualizar un usuario por ID
-@user_bp.route('/<int:user_id>', methods=['PUT'])
+@user_bp.route('/actualizarusuario/<int:user_id>', methods=['PUT'])
 def user_update(user_id):
     data = request.get_json()
     name = data.get('name')
@@ -50,7 +50,7 @@ def user_update(user_id):
     return jsonify(updated_user)
 
 # Ruta para eliminar un usuario por ID
-@user_bp.route('/<int:user_id>', methods=['DELETE'])
+@user_bp.route('/eliminarusuario/<int:user_id>', methods=['DELETE'])
 def user_delete(user_id):
     deleted_user = delete_user(user_id)
     if deleted_user is None:
