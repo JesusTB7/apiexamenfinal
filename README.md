@@ -1,0 +1,1 @@
+API básica en Python para login y gestión de una lista de usuarios. Permite registrar, iniciar sesión y listar usuarios mediante endpoints simples. Funcional para integrarse con aplicaciones web y móviles.
